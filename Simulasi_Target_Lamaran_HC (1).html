@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HCBP Kalimantan - Recruitment Planning | Target Lamaran per Bulan</title>
+<style>
+:root{font-family:Arial,Helvetica,sans-serif;color:#172033;background:#f6f7fb}*{box-sizing:border-box}body{margin:0;padding:24px}.wrap{max-width:850px;margin:auto}.card{background:white;border:1px solid #e0e4ec;border-radius:18px;padding:26px;box-shadow:0 8px 28px #1720330b}.eyebrow{font-size:12px;font-weight:700;letter-spacing:.09em;color:#586b8b;text-transform:uppercase}.title{font-size:26px;margin:8px 0}.sub{color:#65718a;line-height:1.5;margin:0 0 26px}.control{margin:23px 0}.labelrow{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:15px;font-weight:600}.value{font-size:18px;min-width:78px;text-align:right;color:#244fc4;font-weight:700}input[type=range]{width:100%;margin:14px 0 4px;accent-color:#315ed5;cursor:pointer}.marks{display:flex;justify-content:space-between;font-size:12px;color:#7a8498}.results{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:26px}.result{background:#f4f6fb;border-radius:12px;padding:17px}.result span{display:block;color:#65718a;font-size:13px;line-height:1.4}.result strong{display:block;font-size:25px;margin-top:8px}.result.primary{background:#eaf0ff;border:1px solid #cbd8ff}.note{font-size:12px;color:#65718a;line-height:1.55;margin-top:18px}.section{margin-top:26px;border-top:1px solid #e5e8ef;padding-top:20px}.section h2{font-size:17px}.section p,.section li{color:#4e5b72;font-size:14px;line-height:1.6}.footer{margin-top:14px;font-size:12px;color:#8a93a5}@media(max-width:620px){body{padding:12px}.card{padding:18px}.results{grid-template-columns:1fr}.title{font-size:22px}}
+</style>
+</head>
+<body><main class="wrap"><section class="card">
+<div class="eyebrow">HCBP Kalimantan - Recruitment Planning</div><h1 class="title">Target Lamaran per Bulan</h1><p class="sub">Geser slider untuk menghitung estimasi jumlah lamaran berdasarkan proyeksi kebutuhan join dan rasio konversi historis.</p>
+<div class="control"><div class="labelrow"><label for="turnover">Rata-rata karyawan keluar per bulan</label><span class="value" id="turnoverVal">2 orang</span></div><input id="turnover" type="range" min="0" max="30" step="1" value="2"><div class="marks"><span>0</span><span>15</span><span>30</span></div></div>
+<div class="control"><div class="labelrow"><label for="mpp">Kebutuhan tambahan MPP per bulan</label><span class="value" id="mppVal">1 orang</span></div><input id="mpp" type="range" min="0" max="30" step="1" value="1"><div class="marks"><span>0</span><span>15</span><span>30</span></div></div>
+<div class="control"><div class="labelrow"><label for="conversion">Rasio lamaran sampai join</label><span class="value" id="conversionVal">10%</span></div><input id="conversion" type="range" min="1" max="30" step="1" value="10"><div class="marks"><span>1%</span><span>15%</span><span>30%</span></div></div>
+
+<div class="results" style="grid-template-columns:repeat(2,1fr)"><div class="result"><span>Proyeksi kebutuhan join</span><strong id="hires">3 orang</strong></div><div class="result primary"><span>Target lamaran dasar</span><strong id="apps">30 lamaran</strong></div></div>
+<p class="note">Rumus: (rata-rata karyawan keluar + kebutuhan tambahan MPP) ÷ rasio lamaran sampai join. Angka merupakan estimasi dan perlu disesuaikan dengan data aktual serta kandidat aktif yang tersedia.</p>
+<div class="section"><h2>Petunjuk penggunaan</h2><ol><li>Geser slider sesuai data cabang atau PIC HC.</li><li>Gunakan data historis 6–12 bulan untuk menghitung rasio lamaran sampai join.</li><li>Hitung turnover dan kebutuhan MPP tanpa menghitung kebutuhan pengganti dua kali.</li><li>Review target setiap bulan berdasarkan kandidat qualified, kecepatan pemenuhan, dan kandidat yang benar-benar join.</li></ol></div>
+<div class="footer">Simulasi perencanaan internal · Angka awal hanya contoh dan perlu disesuaikan dengan data aktual perusahaan.</div>
+</section></main>
+<script>
+const ids=['turnover','mpp','conversion'];function update(){const t=+document.getElementById('turnover').value,m=+document.getElementById('mpp').value,c=+document.getElementById('conversion').value;document.getElementById('turnoverVal').textContent=t+' orang';document.getElementById('mppVal').textContent=m+' orang';document.getElementById('conversionVal').textContent=c+'%';const h=t+m;document.getElementById('hires').textContent=h+' orang';document.getElementById('apps').textContent=Math.ceil(h/(c/100))+' lamaran'}ids.forEach(id=>document.getElementById(id).addEventListener('input',update));update();
+</script></body></html>
